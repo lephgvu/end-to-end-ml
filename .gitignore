@@ -1,18 +1,20 @@
-# Environment
+# Python Virtual Environments
 .env/
 .venv/
 env/
 venv/
 
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
 
-
+# Jupyter Notebook
 .ipynb_checkpoints/
 
-__pycache__/
+# IDE
+.vscode/
 
-*.vscode/
-
+# Postman
 postman/
 .postman/
-
-
