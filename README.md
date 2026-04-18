@@ -1,9 +1,66 @@
-# House Price Prediction (End-to-End ML)
+# 🏠 House Price Prediction — End-to-End Machine Learning Project
 
-## Overview
-This project builds and deploys a machine learning model to predict housing prices using the Boston Housing dataset.
+## 🚀 Live Demo
 
-## Project structure
+👉 https://housing-app-rqh8.onrender.com/
+
+---
+
+## 📌 Overview
+
+This project demonstrates a complete **end-to-end machine learning pipeline** for predicting house prices using the Boston Housing dataset.
+
+It covers the full workflow from **data analysis → model training → deployment**, and is delivered as a **production-ready web application**.
+
+---
+
+## 🧠 Models
+
+The following regression models were implemented and evaluated:
+
+* Linear Regression
+* Support Vector Machine (SVM)
+* Random Forest Regressor (**Best Performer**)
+
+📊 **Best model performance:**
+
+* R² Score: ~0.89
+* Selected model: Random Forest
+
+---
+
+## ⚙️ Tech Stack
+
+### 🔹 Backend
+
+* Python
+* Flask
+* Scikit-learn
+
+### 🔹 Frontend
+
+* HTML, CSS, JavaScript
+
+### 🔹 DevOps & Deployment
+
+* Docker (containerization)
+* GitHub Actions (CI/CD pipeline)
+* Render (cloud deployment)
+
+---
+
+## ✨ Features
+
+* Input all **13 housing features**
+* Real-time prediction via web interface
+* Feature scaling with `StandardScaler`
+* Clean and responsive UI
+* Deployed as a public web service
+
+---
+
+## 🏗️ Project Structure
+
 ```
 project/
 │
@@ -21,68 +78,65 @@ project/
 └── README.md
 ```
 
-## Models
-- Linear Regression
-- Support Vector Machine
-- Random Forest (Best: R² = 0.89)
+---
 
-## Tech Stack
-- Python, Flask
-- Scikit-learn
-- Docker
-- GitHub Actions (CI/CD)
-- Render
+## 🐳 Run with Docker
 
-## Features
-- 13 input features
-- Real-time prediction via web UI
-- Feature scaling
-
-## Demo
-[Live App Link] (sau khi deploy Render)
-
-<!-- ## Run locally
 ```bash
-pip install -r requirements.txt
-python app.py
+docker build -t housing-app .
+docker run -p 5000:5000 housing-app
+```
+
+👉 Open: http://localhost:5000
 
 ---
 
-## F. Docker + CI/CD (CHƯA CÓ)
+## 💻 Run Locally (Without Docker)
 
-👉 Đây là phần **quan trọng nhất để bạn vượt người khác**
+### Using Conda
+
+```bash
+conda create -n ml-app python=3.11
+conda activate ml-app
+pip install -r requirements.txt
+python app/app.py
+```
 
 ---
 
-### Bạn cần thêm:
+## 🔄 CI/CD Pipeline
 
-#### 1. Dockerfile
-#### 2. GitHub Actions
-#### 3. Deploy Render
+This project uses **GitHub Actions** to automatically:
 
---- -->
+* Build Docker image
+* Validate dependencies
+* Run container tests
+
+---
+
+## 🌐 Deployment
+
+The application is deployed on **Render** using Docker.
+
+👉 Public URL:
+https://housing-app-rqh8.onrender.com/
+
+---
 
 
-## For Anaconda/Miniconda users
-Create a new environment
-```
-conda create -n venv python=3.13
-```
+## 🏠 Screenshot UI
+![App Screenshot](app.png)
+---
 
-Activate environment
-```
-conda activate venv
-```
+## 📊 Future Improvements
 
-Install the necessary libraries.
-```
-pip install -r requirements.txt
-```
+* Add feature importance visualization
+* Improve UI/UX (loading states, better feedback)
+* Compare multiple models directly on UI
+* Add API documentation
 
-How to run
-```
-cd app
-python app.py
-```
+---
 
-## For ... users
+## 📄 License
+
+This project is for educational and portfolio purposes.
