@@ -1,3 +1,4 @@
+import os
 import joblib
 import numpy as np
 import pandas as pd
@@ -5,9 +6,14 @@ from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
+# Get absolute path to models directory
+app_dir = os.path.dirname(os.path.abspath(__file__))
+project_dir = os.path.dirname(app_dir)
+models_dir = os.path.join(project_dir, 'models')
+
 # Load model + scaler
-rf_model = joblib.load('../models/random_forest_model.pkl')
-scaler = joblib.load('../models/scaler.pkl')
+rf_model = joblib.load(os.path.join(models_dir, 'random_forest_model.pkl'))
+scaler = joblib.load(os.path.join(models_dir, 'scaler.pkl'))
 
 FEATURES = [
     "CRIM", "ZN", "INDUS", "CHAS", "NOX", "RM",
@@ -42,4 +48,4 @@ def predict():
         }), 400
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
