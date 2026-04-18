@@ -1,1 +1,226 @@
-<h1>Feature Prediction</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🏠 Boston Housing Price Predictor</h1>
+
+    <div class="card">
+
+        <div class="top-actions">
+            <button type="button" onclick="fillSample()"> Fill Sample Data</button>
+        </div>
+
+        <form id="form">
+            <div class="grid">
+
+                <!-- CRIM -->
+                <div class="field">
+                    <label>
+                        CRIM
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">Per capita crime rate</span>
+                        </span>
+                    </label>
+                    <input name="CRIM" required>
+                </div>
+
+                <!-- ZN -->
+                <div class="field">
+                    <label>
+                        ZN
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">Residential land zoned (%)</span>
+                        </span>
+                    </label>
+                    <input name="ZN" required>
+                </div>
+
+                <!-- INDUS -->
+                <div class="field">
+                    <label>
+                        INDUS
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">Non-retail business acres (%)</span>
+                        </span>
+                    </label>
+                    <input name="INDUS" required>
+                </div>
+
+                <!-- CHAS -->
+                <div class="field">
+                    <label>
+                        CHAS
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">Near Charles River (1=yes, 0=no)</span>
+                        </span>
+                    </label>
+                    <input name="CHAS" required>
+                </div>
+
+                <!-- NOX -->
+                <div class="field">
+                    <label>
+                        NOX
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">Nitric oxide concentration</span>
+                        </span>
+                    </label>
+                    <input name="NOX" required>
+                </div>
+
+                <!-- RM -->
+                <div class="field">
+                    <label>
+                        RM
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">Average number of rooms</span>
+                        </span>
+                    </label>
+                    <input name="RM" required>
+                </div>
+
+                <!-- AGE -->
+                <div class="field">
+                    <label>
+                        AGE
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">% of houses built before 1940</span>
+                        </span>
+                    </label>
+                    <input name="AGE" required>
+                </div>
+
+                <!-- DIS -->
+                <div class="field">
+                    <label>
+                        DIS
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">Distance to employment centers</span>
+                        </span>
+                    </label>
+                    <input name="DIS" required>
+                </div>
+
+                <!-- RAD -->
+                <div class="field">
+                    <label>
+                        RAD
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">Accessibility to highways</span>
+                        </span>
+                    </label>
+                    <input name="RAD" required>
+                </div>
+
+                <!-- TAX -->
+                <div class="field">
+                    <label>
+                        TAX
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">Property tax rate</span>
+                        </span>
+                    </label>
+                    <input name="TAX" required>
+                </div>
+
+                <!-- PTRATIO -->
+                <div class="field">
+                    <label>
+                        PTRATIO
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">Pupil-teacher ratio</span>
+                        </span>
+                    </label>
+                    <input name="PTRATIO" required>
+                </div>
+
+                <!-- B -->
+                <div class="field">
+                    <label>
+                        B
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">Demographic index</span>
+                        </span>
+                    </label>
+                    <input name="B" required>
+                </div>
+
+                <!-- LSTAT -->
+                <div class="field">
+                    <label>
+                        LSTAT
+                        <span class="tooltip">ⓘ
+                            <span class="tooltip-text">% lower income population</span>
+                        </span>
+                    </label>
+                    <input name="LSTAT" required>
+                </div>
+
+            </div>
+
+            <button type="submit">Predict Price</button>
+        </form>
+
+        <div class="result">
+            <h2 id="price">--</h2>
+            <p id="status">Enter all features to predict</p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+document.getElementById("form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const inputs = document.querySelectorAll("input");
+    let data = {};
+
+    inputs.forEach(input => {
+        data[input.name] = parseFloat(input.value);
+    });
+
+    const res = await fetch("/predict", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+
+    if(result.error){
+        document.getElementById("status").innerText = result.error;
+        return;
+    }
+
+    document.getElementById("price").innerText =
+        "$" + result.prediction + "k";
+
+    document.getElementById("status").innerText =
+        "Estimated house price (Random Forest)";
+});
+
+/* Auto-fill demo */
+function fillSample(){
+    const sample = {
+        CRIM: 0.1, ZN: 18, INDUS: 2.3, CHAS: 0,
+        NOX: 0.5, RM: 6.5, AGE: 65, DIS: 4,
+        RAD: 1, TAX: 300, PTRATIO: 15, B: 390, LSTAT: 10
+    };
+
+    Object.keys(sample).forEach(k => {
+        document.querySelector(`[name=${k}]`).value = sample[k];
+    });
+
+    document.getElementById("status").innerText = "Sample data loaded";
+}
+</script>
+
+</body>
+</html>
