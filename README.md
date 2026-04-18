@@ -10,7 +10,11 @@
 
 This project demonstrates a complete **end-to-end machine learning pipeline** for predicting house prices using the Boston Housing dataset.
 
-It covers the full workflow from **data analysis → model training → deployment**, and is delivered as a **production-ready web application**.
+It covers the full workflow from:
+
+> **Data Analysis → Model Training → Evaluation → Deployment**
+
+The final model is deployed as a **production-ready web application** using Docker and cloud infrastructure.
 
 ---
 
@@ -44,7 +48,7 @@ The following regression models were implemented and evaluated:
 ### 🔹 DevOps & Deployment
 
 * Docker (containerization)
-* GitHub Actions (CI/CD pipeline)
+* GitHub Actions (**CI pipeline**)
 * Render (cloud deployment)
 
 ---
@@ -55,27 +59,41 @@ The following regression models were implemented and evaluated:
 * Real-time prediction via web interface
 * Feature scaling with `StandardScaler`
 * Clean and responsive UI
-* Deployed as a public web service
+* Publicly deployed ML service
 
 ---
 
 ## 🏗️ Project Structure
 
-```
+```bash
 project/
 │
-├── app/
-│   ├── app.py
-│   ├── templates/
-│   └── static/
+├── app/                       # Flask application
+│   ├── app.py                 # Main backend (API + routing + model inference)
+│   │
+│   ├── templates/             # HTML templates 
+│   │   └── index.html         # Main UI page
+│   │
+│   └── static/                # Frontend assets
+│       └── style.css          # Styling
+│        
 │
-├── models/
-├── data/
-├── notebooks/
+├── models/                    # Trained ML artifacts
+│   ├── random_forest_model.pkl
+│   └── scaler.pkl             # StandardScaler for preprocessing
+│
+├── data/                      # Raw dataset (Boston Housing)
+│
+├── notebooks/                 # Jupyter notebooks
+│   └── linear_ml.ipynb        # EDA + training + evaluation
+│
 ├── .github/workflows/
-├── Dockerfile
-├── requirements.txt
-└── README.md
+│   └── ci.yml                 # CI pipeline (build + test Docker)
+│
+├── Dockerfile                 # Container configuration
+├── requirements.txt           # Python dependencies
+├── README.md                  # Project documentation
+└── app.png                    # UI screenshot (for GitHub preview)
 ```
 
 ---
@@ -93,8 +111,6 @@ docker run -p 5000:5000 housing-app
 
 ## 💻 Run Locally (Without Docker)
 
-### Using Conda
-
 ```bash
 conda create -n ml-app python=3.11
 conda activate ml-app
@@ -104,13 +120,17 @@ python app/app.py
 
 ---
 
-## 🔄 CI/CD Pipeline
+## 🔄 CI Pipeline
 
-This project uses **GitHub Actions** to automatically:
+This project uses **GitHub Actions** for Continuous Integration:
 
+* Install dependencies
+* Validate Python environment
 * Build Docker image
-* Validate dependencies
-* Run container tests
+* Run container
+* Test application endpoint
+
+👉 Ensures the project is always **buildable and runnable**
 
 ---
 
@@ -118,22 +138,23 @@ This project uses **GitHub Actions** to automatically:
 
 The application is deployed on **Render** using Docker.
 
-👉 Public URL:
+👉 Live URL:
 https://housing-app-rqh8.onrender.com/
 
 ---
 
-
 ## 🏠 Screenshot UI
+
 ![App Screenshot](app.png)
+
 ---
 
 ## 📊 Future Improvements
 
 * Add feature importance visualization
 * Improve UI/UX (loading states, better feedback)
-* Compare multiple models directly on UI
-* Add API documentation
+* Compare multiple models in UI
+* Add REST API documentation
 
 ---
 
