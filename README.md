@@ -1,16 +1,3 @@
-# End-To-End-Machine Learning
-
-## Boston House Price Prediction (Linear Regression, Random Forest, SVM)
-
-### Software, Tools and Environment
-
-1. GitHub/GitBash
-2. Docker
-3. VS Code IDE
-4. Render
-5. Virtual environment (Anaconda/Miniconda)
-6. GitHub Actions for CI/CD pipeline
-
 # House Price Prediction (End-to-End ML)
 
 ## Overview
@@ -44,6 +31,7 @@ project/
 - Scikit-learn
 - Docker
 - GitHub Actions (CI/CD)
+- Render
 
 ## Features
 - 13 input features
