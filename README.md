@@ -63,6 +63,65 @@ The following regression models were implemented and evaluated:
 
 ---
 
+## 🔌 API Usage
+
+### Endpoint
+
+```bash
+POST /predict
+```
+
+### Request Format (JSON)
+
+```json
+{
+  "CRIM": 0.1,
+  "ZN": 18,
+  "INDUS": 2.3,
+  "CHAS": 0,
+  "NOX": 0.5,
+  "RM": 6.5,
+  "AGE": 65,
+  "DIS": 4,
+  "RAD": 1,
+  "TAX": 300,
+  "PTRATIO": 15,
+  "B": 390,
+  "LSTAT": 10
+}
+```
+
+### Response Format
+
+```json
+{
+  "prediction": 24.5,
+  "unit": "USD (thousands)"
+}
+```
+
+---
+
+## 📥 Input Features Description
+
+| Feature | Description                                      |
+| ------- | ------------------------------------------------ |
+| CRIM    | Per capita crime rate                            |
+| ZN      | Residential land zoned (%)                       |
+| INDUS   | Non-retail business acres (%)                    |
+| CHAS    | Charles River dummy variable (1 = near, 0 = not) |
+| NOX     | Nitric oxide concentration                       |
+| RM      | Average number of rooms                          |
+| AGE     | % of houses built before 1940                    |
+| DIS     | Distance to employment centers                   |
+| RAD     | Accessibility to highways                        |
+| TAX     | Property tax rate                                |
+| PTRATIO | Pupil-teacher ratio                              |
+| B       | Demographic index                                |
+| LSTAT   | % lower income population                        |
+
+---
+
 ## 🏗️ Project Structure
 
 ```bash
