@@ -1,12 +1,12 @@
-# 🏠 House Price Prediction — End-to-End Machine Learning Project
+# House Price Prediction — End-to-End Machine Learning Project
 
-## 🚀 Live Demo
+## Live Demo
 
-👉 https://housing-app-rqh8.onrender.com/
+* https://housing-app-rqh8.onrender.com/
 
 ---
 
-## 📌 Overview
+##  Overview
 
 This project demonstrates a complete **end-to-end machine learning pipeline** for predicting house prices using the Boston Housing dataset.
 
@@ -18,7 +18,7 @@ The final model is deployed as a **production-ready web application** using Dock
 
 ---
 
-## 🧠 Models
+## Models
 
 The following regression models were implemented and evaluated:
 
@@ -26,26 +26,26 @@ The following regression models were implemented and evaluated:
 * Support Vector Machine (SVM)
 * Random Forest Regressor (**Best Performer**)
 
-📊 **Best model performance:**
+**Best model performance:**
 
 * R² Score: ~0.89
 * Selected model: Random Forest
 
 ---
 
-## ⚙️ Tech Stack
+##  Tech Stack
 
-### 🔹 Backend
+###  Backend
 
 * Python
 * Flask
 * Scikit-learn
 
-### 🔹 Frontend
+###  Frontend
 
-* HTML, CSS, JavaScript
+* HTML, CSS, JavaScript (Basic)
 
-### 🔹 DevOps & Deployment
+### DevOps & Deployment
 
 * Docker (containerization)
 * GitHub Actions (**CI pipeline**)
@@ -53,7 +53,7 @@ The following regression models were implemented and evaluated:
 
 ---
 
-## ✨ Features
+## Features
 
 * Input all **13 housing features**
 * Real-time prediction via web interface
@@ -63,7 +63,26 @@ The following regression models were implemented and evaluated:
 
 ---
 
-## 🔌 API Usage
+##  Input Features Description
+
+| Feature | Description                                      |
+| ------- | ------------------------------------------------ |
+| CRIM    | Per capita crime rate                            |
+| ZN      | Residential land zoned (%)                       |
+| INDUS   | Non-retail business acres (%)                    |
+| CHAS    | Charles River dummy variable (1 = near, 0 = not) |
+| NOX     | Nitric oxide concentration                       |
+| RM      | Average number of rooms                          |
+| AGE     | % of houses built before 1940                    |
+| DIS     | Distance to employment centers                   |
+| RAD     | Accessibility to highways                        |
+| TAX     | Property tax rate                                |
+| PTRATIO | Pupil-teacher ratio                              |
+| B       | Demographic index                                |
+| LSTAT   | % lower income population                        |
+---
+
+## API Usage
 
 ### Endpoint
 
@@ -102,27 +121,7 @@ POST /predict
 
 ---
 
-## 📥 Input Features Description
-
-| Feature | Description                                      |
-| ------- | ------------------------------------------------ |
-| CRIM    | Per capita crime rate                            |
-| ZN      | Residential land zoned (%)                       |
-| INDUS   | Non-retail business acres (%)                    |
-| CHAS    | Charles River dummy variable (1 = near, 0 = not) |
-| NOX     | Nitric oxide concentration                       |
-| RM      | Average number of rooms                          |
-| AGE     | % of houses built before 1940                    |
-| DIS     | Distance to employment centers                   |
-| RAD     | Accessibility to highways                        |
-| TAX     | Property tax rate                                |
-| PTRATIO | Pupil-teacher ratio                              |
-| B       | Demographic index                                |
-| LSTAT   | % lower income population                        |
-
----
-
-## 🏗️ Project Structure
+## Project Structure
 
 ```bash
 project/
@@ -157,18 +156,18 @@ project/
 
 ---
 
-## 🐳 Run with Docker
+##  Run with Docker
 
 ```bash
 docker build -t housing-app .
 docker run -p 5000:5000 housing-app
 ```
 
-👉 Open: http://localhost:5000
+* Open: http://localhost:5000
 
 ---
 
-## 💻 Run Locally (Without Docker)
+## Run Locally (Without Docker)
 
 ```bash
 conda create -n ml-app python=3.11
@@ -179,7 +178,7 @@ python app/app.py
 
 ---
 
-## 🔄 CI Pipeline
+## CI Pipeline
 
 This project uses **GitHub Actions** for Continuous Integration:
 
@@ -189,26 +188,26 @@ This project uses **GitHub Actions** for Continuous Integration:
 * Run container
 * Test application endpoint
 
-👉 Ensures the project is always **buildable and runnable**
+ Ensures the project is always **buildable and runnable**
 
 ---
 
-## 🌐 Deployment
+##  Deployment
 
 The application is deployed on **Render** using Docker.
 
-👉 Live URL:
+* Live URL:
 https://housing-app-rqh8.onrender.com/
 
 ---
 
-## 🏠 Screenshot UI
+##  Screenshot UI
 
 ![App Screenshot](app.png)
 
 ---
 
-## 📊 Future Improvements
+##  Future Improvements
 
 * Add feature importance visualization
 * Improve UI/UX (loading states, better feedback)
@@ -217,6 +216,6 @@ https://housing-app-rqh8.onrender.com/
 
 ---
 
-## 📄 License
+##  License
 
 This project is for educational and portfolio purposes.
