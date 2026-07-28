@@ -1,96 +1,97 @@
-# House Price Prediction — End-to-End Machine Learning Project
+# House Price Prediction — End-to-End Machine Learning
+
+An end-to-end machine learning project that predicts Boston house values and serves the result through a modern web interface.
 
 ## Live Demo
 
-* https://housing-app-rqh8.onrender.com/
+- **Hearthline frontend:** https://end-to-end-ml-1-g21x.onrender.com/
+- **Flask API and legacy interface:** https://housing-app-rqh8.onrender.com/
 
----
+![Hearthline social preview](web/public/og.png)
 
-##  Overview
+## Overview
 
-This project demonstrates a complete **end-to-end machine learning pipeline** for predicting house prices using the Boston Housing dataset.
+This project covers the complete workflow:
 
-It covers the full workflow from:
+> Data analysis → Model training → Evaluation → API → Web deployment
 
-> **Data Analysis → Model Training → Evaluation → Deployment**
-
-The final model is deployed as a **production-ready web application** using Docker and cloud infrastructure.
-
----
+The prediction model is exposed through a Flask API hosted on Render. The Hearthline frontend provides a responsive interface for configuring all 13 Boston Housing signals and sends prediction requests to that API.
 
 ## Models
 
 The following regression models were implemented and evaluated:
 
-* Linear Regression
-* Support Vector Machine (SVM)
-* Random Forest Regressor (**Best Performer**)
+- Linear Regression
+- Support Vector Machine
+- Random Forest Regressor (**best performer**)
 
-**Best model performance:**
+Best model performance:
 
-* R² Score: ~0.89
-* Selected model: Random Forest
+- **R² score:** approximately 0.89
+- **Selected model:** Random Forest Regressor
 
----
+## Tech Stack
 
-##  Tech Stack
+### Machine learning and API
 
-###  Backend
+- Python 3.11
+- Flask
+- Scikit-learn
+- Pandas and NumPy
+- Joblib
+- Gunicorn
 
-* Python
-* Flask
-* Scikit-learn
+### Frontend
 
-###  Frontend
+- React 19
+- TypeScript
+- Next.js-compatible Vinext runtime
+- Responsive HTML and CSS
 
-* HTML, CSS, JavaScript (Basic)
+### DevOps and deployment
 
-### DevOps & Deployment
-
-* Docker (containerization)
-* GitHub Actions (**CI pipeline**)
-* Render (cloud deployment)
-
----
+- Docker
+- GitHub Actions
+- Render
+- OpenAI Sites
 
 ## Features
 
-* Input all **13 housing features**
-* Real-time prediction via web interface
-* Feature scaling with `StandardScaler`
-* Clean and responsive UI
-* Publicly deployed ML service
+- Configure all **13 Boston Housing features**
+- Start from three predefined neighborhood profiles
+- Fine-tune individual housing, access, and environmental signals
+- Generate real-time predictions from the deployed Random Forest model
+- Responsive and accessible interface
+- Branded Open Graph and social-sharing preview
 
----
+## Input Features
 
-##  Input Features Description
-
-| Feature | Description                                      |
-| ------- | ------------------------------------------------ |
-| CRIM    | Per capita crime rate                            |
-| ZN      | Residential land zoned (%)                       |
-| INDUS   | Non-retail business acres (%)                    |
-| CHAS    | Charles River dummy variable (1 = near, 0 = not) |
-| NOX     | Nitric oxide concentration                       |
-| RM      | Average number of rooms                          |
-| AGE     | % of houses built before 1940                    |
-| DIS     | Distance to employment centers                   |
-| RAD     | Accessibility to highways                        |
-| TAX     | Property tax rate                                |
-| PTRATIO | Pupil-teacher ratio                              |
-| B       | Demographic index                                |
-| LSTAT   | % lower income population                        |
----
+| Feature | Description |
+| --- | --- |
+| CRIM | Per-capita crime rate |
+| ZN | Residential land zoned for large lots (%) |
+| INDUS | Non-retail business acreage (%) |
+| CHAS | Charles River dummy variable (1 = near, 0 = not) |
+| NOX | Nitric oxide concentration |
+| RM | Average number of rooms |
+| AGE | Homes built before 1940 (%) |
+| DIS | Distance to employment centers |
+| RAD | Accessibility to highways |
+| TAX | Property tax rate |
+| PTRATIO | Pupil–teacher ratio |
+| B | Dataset demographic index |
+| LSTAT | Lower-income population (%) |
 
 ## API Usage
 
 ### Endpoint
 
-```bash
-POST /predict
+```http
+POST https://housing-app-rqh8.onrender.com/predict
+Content-Type: application/json
 ```
 
-### Request Format (JSON)
+### Request
 
 ```json
 {
@@ -110,7 +111,7 @@ POST /predict
 }
 ```
 
-### Response Format
+### Response
 
 ```json
 {
@@ -119,103 +120,77 @@ POST /predict
 }
 ```
 
----
-
 ## Project Structure
 
-```bash
-project/
-│
-├── app/                       # Flask application
-│   ├── app.py                 # Main backend (API + routing + model inference)
-│   │
-│   ├── templates/             # HTML templates 
-│   │   └── index.html         # Main UI page
-│   │
-│   └── static/                # Frontend assets
-│       └── style.css          # Styling
-│        
-│
-├── models/                    # Trained ML artifacts
-│   ├── random_forest_model.pkl
-│   └── scaler.pkl             # StandardScaler for preprocessing
-│
-├── data/                      # Raw dataset (Boston Housing)
-│
-├── notebooks/                 # Jupyter notebooks
-│   └── linear_ml.ipynb        # EDA + training + evaluation
-│
-├── .github/workflows/
-│   └── ci.yml                 # CI pipeline (build + test Docker)
-│
-├── Dockerfile                 # Container configuration
-├── requirements.txt           # Python dependencies
-├── README.md                  # Project documentation
-└── app.png                    # UI screenshot (for GitHub preview)
+```text
+.
+├── app/                    # Flask API and legacy interface
+│   ├── app.py
+│   ├── static/
+│   └── templates/
+├── web/                    # Hearthline React frontend
+│   ├── app/
+│   ├── public/
+│   └── package.json
+├── models/                 # Trained model and scaler
+├── data/                   # Boston Housing dataset
+├── notebook/               # Analysis and model training
+├── .github/workflows/      # CI pipeline
+├── Dockerfile              # Flask API container
+├── requirements.txt
+└── README.md
 ```
 
----
+## Run Locally
 
-##  Run with Docker
+### Hearthline frontend
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Open http://localhost:3000.
+
+The frontend uses the deployed Render API by default.
+
+### Flask API
+
+```bash
+pip install -r requirements.txt
+python app/app.py
+```
+
+Open http://localhost:5000.
+
+### Docker
 
 ```bash
 docker build -t housing-app .
 docker run -p 5000:5000 housing-app
 ```
 
-* Open: http://localhost:5000
+## Continuous Integration
 
----
+GitHub Actions runs on pushes and pull requests targeting `main`. The workflow:
 
-## Run Locally (Without Docker)
+1. Installs Python dependencies
+2. Validates required imports
+3. Builds the Docker image
+4. Starts the container
+5. Tests the Flask homepage
 
-```bash
-conda create -n ml-app python=3.11
-conda activate ml-app
-pip install -r requirements.txt
-python app/app.py
-```
+## Deployment
 
----
+| Component | Platform | URL |
+| --- | --- | --- |
+| Hearthline frontend | Render | https://end-to-end-ml-1-g21x.onrender.com/ |
+| Prediction API | Render | https://housing-app-rqh8.onrender.com/ |
+| Hearthline private deployment | OpenAI Sites | https://hearthline-boston.vuleephuong123.chatgpt.site/ |
 
-## CI Pipeline
+The frontend and API are deployed as separate services. The frontend forwards prediction requests to the Flask API.
 
-This project uses **GitHub Actions** for Continuous Integration:
+## Disclaimer
 
-* Install dependencies
-* Validate Python environment
-* Build Docker image
-* Run container
-* Test application endpoint
-
- Ensures the project is always **buildable and runnable**
-
----
-
-##  Deployment
-
-The application is deployed on **Render** using Docker.
-
-* Live URL:
-https://housing-app-rqh8.onrender.com/
-
----
-
-##  Screenshot UI
-
-![App Screenshot](app.png)
-
----
-
-##  Future Improvements
-
-* Add feature importance visualization
-* Improve UI/UX (loading states, better feedback)
-* Compare multiple models in UI
-* Add REST API documentation
-
----
-
-##  License
-
-This project is for educational and portfolio purposes.
+This project is for educational and portfolio purposes. Predictions are based on the historical Boston Housing dataset and are not professional property appraisals.
